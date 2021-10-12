@@ -1,0 +1,13 @@
+# dependencies
+node_modules/
+node_modules
+
+# misc
+.DS_Store
+dist
+dist-ssr
+*.local
+
+
+# production
+/frontend/build
