@@ -6,7 +6,7 @@ class TranslateController {
       const { text, source, target } = req.body;
 
       if (text === "")
-        res.status(422).json({ msg: "fail", error: "Pesan kososng" });
+        res.status(422).json({ message: "fail", error: "Pesan kososng" });
 
       const result = await translate({
         text,
@@ -14,10 +14,15 @@ class TranslateController {
         target,
       });
 
-      res.status(200).json({ msg: "ok", translation: result.translation });
+      res.status(200).json({
+        message: "ok",
+        translation: result.translation,
+        spell: result.spell && result.spell.spell_res,
+        spell_html: result.spell && result.spell.spell_html_res,
+      });
     } catch (error) {
       console.log("error", error);
-      res.status(422).json({ msg: "fail", error: error.message });
+      res.status(422).json({ message: "fail", error: error.message });
     }
   }
 }
